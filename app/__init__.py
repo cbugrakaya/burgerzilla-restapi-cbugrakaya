@@ -4,6 +4,7 @@ APP initializer
 """
 from re import A
 from flask import Flask
+
 from .extensions import cors, db, jwt, ma
 
 

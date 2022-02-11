@@ -15,7 +15,7 @@ class Users(db.Model):
     User table"""
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    fullname = db.Column(db.String(80))
+    fullname = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(120), unique=True)
     password_hash = db.Column(db.String(128), nullable=False)
     role_type = db.Column(db.String(80), nullable=False)
@@ -28,7 +28,7 @@ class Users(db.Model):
 
     @password.setter
     def password(self, password):
-        self.password_hash = generate_password_hash(password).decode("utf-8")
+        self.password_hash = generate_password_hash(password)
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)

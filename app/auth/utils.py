@@ -13,7 +13,7 @@ class LoginSchema(Schema):
     """
 
     email = fields.Email(required=True, validate=[Length(max=64)])
-    password = fields.Str(required=True, validate=[Length(min=8, max=128)])
+    password = fields.Str(required=True, validate=[Length(min=5, max=128)])
 
 
 class CustRegisterSchema(Schema):
@@ -25,16 +25,18 @@ class CustRegisterSchema(Schema):
     - Password (Str)
     """
 
-    email = fields.Email(required=True, validate=[Length(max=64)])
+    email = fields.Email(
+        required=True, 
+        validate=[Length(max=64), Regexp(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",error="Invalid  email!")]
+    )
     fullname = fields.Str(
-        required=True,
+        required=True, 
         validate=[
-            Regexp(
-                r"^[A-Za-z]+((\s)?((\'|\-|\.)?([A-Za-z])+))*$", error="Invalid name!",
-            )
+            Length(min=2, max=128)
+            # Regexp(r"^[a-zA-ZğüşöçİĞÜŞÖÇ]+$",error="Invalid  name!")
         ]
     )
-    password = fields.Str(required=True, validate=[Length(min=8, max=128)])
+    password = fields.Str(required=True, validate=[Length(min=5, max=128)])
 
 
 
@@ -50,14 +52,16 @@ class ResRegisterSchema(Schema):
     - Restaurant Name (Str)
     """
 
-    email = fields.Email(required=True, validate=[Length(max=64)])
+    email = fields.Email(
+        required=True,  
+        validate=[Length(max=64), Regexp(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",error="Invalid  email!")]
+    )
     fullname = fields.Str(
         required=True,
         validate=[
-            Regexp(
-                r"^[A-Za-z]+((\s)?((\'|\-|\.)?([A-Za-z])+))*$", error="Invalid name!",
-            )
+            Length(min=2, max=128)
+            # Regexp(r"^[a-zA-ZğüşöçİĞÜŞÖÇ]+$",error="Invalid  name!")
         ]
     )
-    password = fields.Str(required=True, validate=[Length(min=8, max=128)])
+    password = fields.Str(required=True, validate=[Length(min=5, max=128)])
     restaurant_name = fields.Str(required=True, validate=[Length(min=4, max=128)])

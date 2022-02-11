@@ -8,6 +8,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', os.urandom(24))
     DEBUG = False
 
+    # JWT CONFIG
     JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY', os.urandom(24))
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=2)
 
@@ -23,8 +24,8 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
-    #SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL",'sqlite:///' + os.path.join(basedir, 'test.sqlite'))
-    SQLALCHEMY_DATABASE_URI = "postgresql://dbuser1:123456@localhost:5432/restdeneme"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL",'sqlite:///' + os.path.join(basedir, 'test.sqlite'))
+    #SQLALCHEMY_DATABASE_URI = "postgresql://dbuser1:123456@localhost:5432/restburger"
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO =True

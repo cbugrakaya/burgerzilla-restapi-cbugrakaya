@@ -7,7 +7,7 @@ class AuthDto:
     user_obj = api.model('User Object', {
         "fullname": fields.String,
         "email": fields.String,
-        "role_type": fields.Integer
+        "role_type": fields.String
     })
 
     auth_login = api.model('Login Data', {
@@ -15,13 +15,13 @@ class AuthDto:
         "password": fields.String(required=True, description="User password")
     })
 
-    auth_cust_register = api.model('Register Data',{   
+    auth_cust_register = api.model('Customer Register Data',{   
         "fullname": fields.String(required=True, description="User full name"),
         "email": fields.String(required=True, description="User email address"),
         "password": fields.String(required=True, description="User password"),
     })
                
-    auth_res_register = api.model('Register Data',{   
+    auth_res_register = api.model('Restaurant Register Data',{   
         "fullname": fields.String(required=True, description="User full name"),
         "email": fields.String(required=True, description="User email address"),
         "password": fields.String(required=True, description="User password"),

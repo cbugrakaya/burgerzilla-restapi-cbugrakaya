@@ -18,18 +18,18 @@ cust_register_schema = CustRegisterSchema()
 # Restaurant register schema
 res_register_schema = ResRegisterSchema()
 
-@api.route("customer/login")
+@api.route("/customer/login")
 class AuthCustLogin(Resource):
     """
     Customer Login Endpoint
-    User requests a token to be used in future requests
+    Customer requests a token to be used in future requests
     """
     auth_login = AuthDto.auth_login
-    @api.doc("Auth Login",responses = {200: "Success", 400: "Validation Error",403: "Invalid Credentials",404: "User Not Found"})
+    @api.doc("Auth Customer Login",responses = {200: "Success", 400: "Validation Error",403: "Invalid Credentials",404: "User Not Found",405:"Method Not Allowed"})
     @api.expect(auth_login, validate=True)
     def post(self):
         """
-        User Login
+        Customer Login
         """
         login_data = request.get_json()
 
@@ -38,18 +38,18 @@ class AuthCustLogin(Resource):
             return validation_error(False,errors),400
         return AuthCustService.login(login_data)
 
-@api.route("customer/register")
+@api.route("/customer/register")
 class AuthCustRegister(Resource):
     """
     Customer Registration Endpoint
-    User requests a token to be used in future requests
+    Customer requests a token to be used in future requests
     """
     auth_register = AuthDto.auth_cust_register
-    @api.doc("Auth Customer Register",responses = {200: "Success", 400: "Validation Error",409: "Email or Username already exists"})
+    @api.doc("Auth Customer Register",responses = {200: "Success", 400: "Validation Error",409: "Email or Fullname already exists"})
     @api.expect(auth_register, validate=True)
     def post(self):
         """
-        User Registration
+        Customer Registration
         """
         register_data = request.get_json()
 
@@ -59,18 +59,18 @@ class AuthCustRegister(Resource):
         return AuthCustService.register(register_data)
 
 
-@api.route("restaurant/login")
+@api.route("/restaurant/login")
 class AuthResLogin(Resource):
     """
     Restaurant User Login Endpoint
     Restaurant User requests a token to be used in future requests
     """
     auth_login = AuthDto.auth_login
-    @api.doc("Auth Login",responses = {200: "Success", 400: "Validation Error",403: "Invalid Credentials",404: "User Not Found"})
+    @api.doc("Auth Restaurant Login",responses = {200: "Success", 400: "Validation Error",403: "Invalid Credentials",404: "User Not Found",405:"Method Not Allowed"})
     @api.expect(auth_login, validate=True)
     def post(self):
         """
-        User Login
+        Restaurant User
         """
         login_data = request.get_json()
 
@@ -79,18 +79,18 @@ class AuthResLogin(Resource):
             return validation_error(False,errors),400
         return AuthResService.login(login_data)
 
-@api.route("restaurant/register")
+@api.route("/restaurant/register")
 class AuthResRegister(Resource):
     """
     Restaurant User Registration Endpoint
     Restaurant User requests a token to be used in future requests
     """
     auth_register = AuthDto.auth_res_register
-    @api.doc("Auth Register",responses = {200: "Success", 400: "Validation Error",409: "Email or Username already exists"})
+    @api.doc("Auth Restaurant Register",responses = {200: "Success", 400: "Validation Error",409: "Email or Fullname already exists",410:"Restaurant name already exists"})
     @api.expect(auth_register, validate=True)
     def post(self):
         """
-        User Registration
+        Restaurant User Registration
         """
         register_data = request.get_json()
 
