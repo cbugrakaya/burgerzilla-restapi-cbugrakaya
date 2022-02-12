@@ -25,7 +25,7 @@ class AuthCustLogin(Resource):
     Customer requests a token to be used in future requests
     """
     auth_login = AuthDto.auth_login
-    @api.doc("Auth Customer Login",responses = {200: "Success", 400: "Validation Error",403: "Invalid Credentials",404: "User Not Found",405:"Method Not Allowed"})
+    @api.doc("Auth Customer Login",responses = {200: "Success", 400: "Validation Error",403: "Invalid Credentials",404: "User Not Found", 405:"Method Not Allowed"})
     @api.expect(auth_login, validate=True)
     def post(self):
         """
@@ -70,7 +70,7 @@ class AuthResLogin(Resource):
     @api.expect(auth_login, validate=True)
     def post(self):
         """
-        Restaurant User
+        Restaurant Login
         """
         login_data = request.get_json()
 
@@ -90,7 +90,7 @@ class AuthResRegister(Resource):
     @api.expect(auth_register, validate=True)
     def post(self):
         """
-        Restaurant User Registration
+        Restaurant Registration
         """
         register_data = request.get_json()
 

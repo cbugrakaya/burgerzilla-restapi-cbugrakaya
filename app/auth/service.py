@@ -1,12 +1,6 @@
-# veri tabanı ile ilgili yapacağımız işlemleri tutmak için yazılmıştır.
-# from datetime import datetime
-# from flask import current_app
-# from flask_jwt_extended import create_access_token
+"""
 
-# from app import db
-# # from app.utils import message, err_resp, internal_err_resp
-# from app.models.user import
-
+"""
 from datetime import datetime
 from email import message
 from flask import current_app

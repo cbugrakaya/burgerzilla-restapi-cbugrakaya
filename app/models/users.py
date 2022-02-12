@@ -1,3 +1,4 @@
+from enum import Enum
 from app import db 
 from werkzeug.security import check_password_hash,generate_password_hash
 
@@ -9,6 +10,13 @@ from werkzeug.security import check_password_hash,generate_password_hash
 #     role_int = db.Column(db.Integer)
 
 #     role_description = db.Column(db.String(80))
+
+# TODO : Add a role_int field to the Roles table
+# TODO : Kısaca enum yapısına bak
+# class Roles(Enum):
+#     customer = 1
+#     restaurant = 2
+    
     
 class Users(db.Model):
     """
@@ -21,6 +29,7 @@ class Users(db.Model):
     role_type = db.Column(db.String(80), nullable=False)
    
     userdataset = db.relationship("Restaurant", backref="users", lazy="dynamic")
+    orderdataset = db.relationship("OrdersTable", backref="users", lazy="dynamic")
 
     @property
     def password(self):
