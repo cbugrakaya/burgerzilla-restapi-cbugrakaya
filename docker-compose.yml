@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: flaskrestburgerzilla
+    image: flaskrestburgerzilla
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://dbuser1:123456@db:5432/restburger
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dbuser1
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=restburger
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
