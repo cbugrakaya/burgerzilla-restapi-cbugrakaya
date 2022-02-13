@@ -1,4 +1,6 @@
-# BURGERZILLA PROJECT
+# Burgerzilla Project (Yemeksepeti & Patika.dev Python Web Development Bootcamp Final Project)
+
+![381669388162271](https://user-images.githubusercontent.com/58272864/153778599-3f0b6ee8-ccbe-43c4-a5b4-866eb45d2cd3.png)
 
 This project consists of two separate microservices. One of them, Burgerzilla API, is a REST-API micro-service that takes orders from hamburger restaurants, can view the status of the order, and enables transactions with customer/restaurant authorization regarding the order. The second of them is a microservice called Auth API, which allows restaurants and customers to register and login, and then issue JWT tokens to users.
 
@@ -9,11 +11,67 @@ This project consists of two separate microservices. One of them, Burgerzilla AP
 ## Run the test
 
     flask test
+    
+## Folder structure
+    
+    burgerzilla-restapi
+     ┣ app
+     ┃ ┣ api
+     ┃ ┃ ┣ customer
+     ┃ ┃ ┃ ┣ controller.py
+     ┃ ┃ ┃ ┣ dto.py
+     ┃ ┃ ┃ ┣ service.py
+     ┃ ┃ ┃ ┣ utils.py
+     ┃ ┃ ┃ ┗ __init__.py
+     ┃ ┃ ┣ restaurant
+     ┃ ┃ ┃ ┣ controller.py
+     ┃ ┃ ┃ ┣ dto.py
+     ┃ ┃ ┃ ┣ service.py
+     ┃ ┃ ┃ ┣ utils.py
+     ┃ ┃ ┃ ┗ __init__.py
+     ┃ ┃ ┣ authorization_check.py
+     ┃ ┃ ┗ __init__.py
+     ┃ ┣ auth
+     ┃ ┃ ┣ controller.py
+     ┃ ┃ ┣ dto.py
+     ┃ ┃ ┣ service.py
+     ┃ ┃ ┣ utils.py
+     ┃ ┃ ┗ __init__.py
+     ┃ ┣ models
+     ┃ ┃ ┣ orders.py
+     ┃ ┃ ┣ products.py
+     ┃ ┃ ┣ restaurant.py
+     ┃ ┃ ┣ schemas.py
+     ┃ ┃ ┣ users.py
+     ┃ ┃ ┗ __init__.py
+     ┃ ┣ extensions.py
+     ┃ ┣ utils.py
+     ┃ ┗ __init__.py
+     ┣ logs
+     ┣ tests
+     ┃ ┣ utils
+     ┃ ┃ ┣ base.py
+     ┃ ┃ ┣ common.py
+     ┃ ┃ ┗ __init__.py
+     ┃ ┣ test_auth_customer.py
+     ┃ ┣ test_auth_restaurant.py
+     ┃ ┗ __init__.py
+     ┣ .env
+     ┣ .gitignore
+     ┣ boot.sh
+     ┣ config.py
+     ┣ docker-compose.yml
+     ┣ Dockerfile
+     ┣ README.md
+     ┣ requirements.txt
+     ┗ runburgerzilla.py
+## Database Structure
+![image](https://user-images.githubusercontent.com/58272864/153779353-1b85f963-4d3e-4975-9935-cd1de8e2e268.png)
 
 # Auth API 
 
 A REST-API micro-service that enables customers and restaurants to login and register. In addition, customers and restaurants receive JWT tokens with this micro-service, which they will use later.
-`Postman Documentation`
+`Postman Documentation` 
     https://documenter.getpostman.com/view/19453056/UVeNm2hn
 
 ## Auth Customer (`auth/customer`)
