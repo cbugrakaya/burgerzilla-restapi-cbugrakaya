@@ -63,8 +63,8 @@ class RestaurantService:
             resp = message(True,"Order Canceled")
             return resp,200
         except Exception as e:
-                    current_app.logger.error(e)
-                    return internal_err_resp()
+            current_app.logger.error(e)
+            return internal_err_resp()
     """ResOrder Service END"""
 
     """ResOrderList Service BEGIN"""

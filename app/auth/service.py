@@ -7,6 +7,7 @@ from flask import current_app
 from flask_jwt_extended import create_access_token
 
 from app import db
+import app
 from app.utils import message,err_resp, internal_err_resp
 from app.models.users import Users
 from app.models.restaurant import Restaurant
@@ -37,6 +38,8 @@ class AuthCustService:
                 resp = message('True', 'Success Login!')
                 resp['access_token'] = access_token
                 resp['user'] = user_info
+
+                current_app.logger.info(f'{user.fullname} (Customer) logged in at {datetime.now()}')
                 return resp,200
             return err_resp('Email or Password is wrong.',"email_password_404",404)
             
@@ -68,7 +71,10 @@ class AuthCustService:
             resp = message('True', 'Registration Successful!') # mesaj oluşturuluyor
             resp['access_token'] = access_token # token ekleniyor
             resp['user'] = user_info # user bilgisi ekleniyor
+
+            current_app.logger.info(f'{user.fullname} (Customer) registered at {datetime.now()}')
             return resp,200 # 200 dönüyor
+
         except Exception as e:
             current_app.logger.error(e)
             return internal_err_resp()
@@ -96,6 +102,8 @@ class AuthResService():
                 resp = message('True', 'Success Login!')
                 resp['access_token'] = access_token
                 resp['user'] = user_info
+
+                current_app.logger.info(f'{user.fullname} (Restaurant) logged in at {datetime.now()}')
                 return resp,200
             return err_resp('Email or Password is wrong',"email_password_404",404)
   
@@ -136,6 +144,8 @@ class AuthResService():
             resp['access_token'] = access_token # token ekleniyor
             resp['user'] = user_info # user bilgisi ekleniyor
             resp['restaurant'] = restaurant_info
+
+            current_app.logger.info(f'{user.fullname} with {restaurant_name}(Restaurant Name) registered at {datetime.now()}')
             return resp,200 # 200 dönüyor
 
         except Exception as e:
