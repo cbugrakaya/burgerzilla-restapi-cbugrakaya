@@ -1,4 +1,3 @@
-from sqlalchemy import desc
 from app import db
 
 
@@ -11,7 +10,7 @@ class ProductsTable(db.Model):
     res_id = db.Column(db.Integer, db.ForeignKey('restaurant.id'), nullable=False)
     product_name = db.Column(db.String(80), nullable=False)
     price_tl = db.Column(db.Float, nullable=False)
-    desc = db.Column(db.String(80), nullable=False)
+    description = db.Column(db.String(80), nullable=False)
     image_url = db.Column(db.String(80), nullable=False)
 
 

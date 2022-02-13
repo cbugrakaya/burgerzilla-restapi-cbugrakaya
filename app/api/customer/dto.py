@@ -4,16 +4,30 @@ class CustomerDto:
 
     api = Namespace('customer', description='Customer related operations')
 
+    order = api.model('Order', {
+        'order_id': fields.Integer(required=True, description='The order unique identifier'),
+        'user_id': fields.Integer(required=True, description='The user unique identifier'),
+        'product_ids': fields.String(required=True, description='The product ids'),
+        'quantities': fields.String(required=True, description='The quantities'),
+        'order_date': fields.DateTime(required=True, description='The order date'),
+        'order_status': fields.String(required=True, description='The order status')
+    })  
+    
 
-    order_update_data = api.model('Login Data', {
-        "email": fields.String(required=True, description="User email address"),
-        "password": fields.String(required=True, description="User password")
+    orders_data_response = api.model('Order Data Response', {
+        'order_id': fields.Integer(required=True, description='The order unique identifier'),
+        'user_id': fields.Integer(required=True, description='The user unique identifier'),
+        'orders':  fields.List(fields.Nested(order))
     })
 
-    order_new_data = api.model('New Order Data', {
-        "res_id": fields.Integer(required=True, description="Restaurant ID"),
-        #"product_id": fields.Integer(required=True, description="Product ID"),
-        'product_ids': fields.List(fields.Integer, required=True, description="Product IDs"),
-        #"quantity": fields.Integer(required=True, description="Quantity"),
-        'quantities': fields.List(fields.Integer, required=True, description="Quantities"),
+
+    order_update = api.model('Order Update Data', {
+        'quantities': fields.Integer(required=True, description="Quantities")
+    })
+
+    order_new_data = api.model('Order New Data', {
+        # 'product_ids': fields.List(fields.Integer, required=True, description="Product IDs"),
+        # 'quantities': fields.List(fields.Integer, required=True, description="Quantities")
+        'product_ids': fields.Integer(required=True, description="Product IDs"),
+        'quantities': fields.Integer(required=True, description="Quantities")
     })

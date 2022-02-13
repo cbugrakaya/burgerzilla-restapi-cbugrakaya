@@ -91,7 +91,8 @@ class AuthResService():
                 return err_resp('This path is valid for Restaurant.',"user_type_405",405)
             elif user and user.verify_password(password):
                 user_info = user_schema.dump(user)
-                access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type})
+                res_id = Restaurant.query.filter_by(owner_id=user.id).first().id
+                access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type,'res_id':res_id})
                 resp = message('True', 'Success Login!')
                 resp['access_token'] = access_token
                 resp['user'] = user_info
@@ -130,7 +131,7 @@ class AuthResService():
 
             user_info = user_schema.dump(user) # user modeli json formatına dönüştürülüyor
             restaurant_info = restaurant_schema.dump(restaurant)
-            access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type}) # token oluşturuluyor
+            access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type,'res_id':restaurant.id}) # token oluşturuluyor
             resp = message('True', 'Registration Successful!') # mesaj oluşturuluyor
             resp['access_token'] = access_token # token ekleniyor
             resp['user'] = user_info # user bilgisi ekleniyor

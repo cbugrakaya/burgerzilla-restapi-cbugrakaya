@@ -4,15 +4,7 @@ from werkzeug.security import check_password_hash,generate_password_hash
 
 
 
-# class Roles(db.Model):
-#     __tablename__ = 'role'
-#     id = db.Column(db.Integer, primary_key=True)
-#     role_int = db.Column(db.Integer)
 
-#     role_description = db.Column(db.String(80))
-
-# TODO : Add a role_int field to the Roles table
-# TODO : Kısaca enum yapısına bak
 # class Roles(Enum):
 #     customer = 1
 #     restaurant = 2
