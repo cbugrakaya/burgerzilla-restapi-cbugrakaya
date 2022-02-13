@@ -71,6 +71,7 @@ This project consists of two separate microservices. One of them, Burgerzilla AP
 # Auth API 
 
 A REST-API micro-service that enables customers and restaurants to login and register. In addition, customers and restaurants receive JWT tokens with this micro-service, which they will use later.
+
 `Postman Documentation` 
     https://documenter.getpostman.com/view/19453056/UVeNm2hn
 
