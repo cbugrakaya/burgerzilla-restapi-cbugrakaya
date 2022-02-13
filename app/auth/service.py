@@ -58,22 +58,22 @@ class AuthCustService:
         elif Users.query.filter_by(fullname=fullname).first():
             return err_resp('This name is already exists.',"fullname_409",409)
         try:
-            # kullanıcı oluştu
+            # customer created
             user = Users(email=email,
                             fullname=fullname,
                             password=password,
                             role_type="customer")
-            db.session.add(user) # kullanıcı veri tabanına ekleniyor
-            db.session.commit() # veri tabanına eklenen kullanıcı kaydediliyor
+            db.session.add(user) # customer add to database
+            db.session.commit() # commit to database
 
-            user_info = user_schema.dump(user) # user modeli json formatına dönüştürülüyor
-            access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type}) # token oluşturuluyor
-            resp = message('True', 'Registration Successful!') # mesaj oluşturuluyor
-            resp['access_token'] = access_token # token ekleniyor
-            resp['user'] = user_info # user bilgisi ekleniyor
+            user_info = user_schema.dump(user) # dump user data json format
+            access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type}) # create token
+            resp = message('True', 'Registration Successful!') # response message
+            resp['access_token'] = access_token # add token to response
+            resp['user'] = user_info # add user data to response
 
             current_app.logger.info(f'{user.fullname} (Customer) registered at {datetime.now()}')
-            return resp,200 # 200 dönüyor
+            return resp,200 # return response
 
         except Exception as e:
             current_app.logger.error(e)
@@ -125,28 +125,28 @@ class AuthResService():
         elif Restaurant.query.filter_by(restaurant_name=restaurant_name).first():
             return err_resp('This restaurant_name is already exists.',"restaurant_name_410",410)
         try:
-            # kullanıcı oluştu
+            # restaurant and res owner created
             user = Users(email=email,
                             fullname=fullname,
                             password=password,
                             role_type="restaurant")
-            db.session.add(user) # kullanıcı veri tabanına ekleniyor
-            db.session.commit() # veri tabanına eklenen kullanıcı kaydediliyor
+            db.session.add(user) # user add to database
+            db.session.commit() # commit to database
 
             restaurant = Restaurant(restaurant_name=restaurant_name,owner_name=fullname,owner_id=user.id)
-            db.session.add(restaurant) # restaurant veri tabanına ekleniyor
-            db.session.commit() # veri tabanına eklenen restaurant kaydediliyor
+            db.session.add(restaurant) # restaurant add to database
+            db.session.commit() # commit to database
 
-            user_info = user_schema.dump(user) # user modeli json formatına dönüştürülüyor
+            user_info = user_schema.dump(user) # dump user data json format
             restaurant_info = restaurant_schema.dump(restaurant)
-            access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type,'res_id':restaurant.id}) # token oluşturuluyor
-            resp = message('True', 'Registration Successful!') # mesaj oluşturuluyor
-            resp['access_token'] = access_token # token ekleniyor
-            resp['user'] = user_info # user bilgisi ekleniyor
-            resp['restaurant'] = restaurant_info
+            access_token = create_access_token(identity=user.id, additional_claims={'role': user.role_type,'res_id':restaurant.id}) # create token
+            resp = message('True', 'Registration Successful!') # response message
+            resp['access_token'] = access_token # add token to response
+            resp['user'] = user_info # add user data to response
+            resp['restaurant'] = restaurant_info # add restaurant data to response
 
             current_app.logger.info(f'{user.fullname} with {restaurant_name}(Restaurant Name) registered at {datetime.now()}')
-            return resp,200 # 200 dönüyor
+            return resp,200 # return response
 
         except Exception as e:
             current_app.logger.error(e)

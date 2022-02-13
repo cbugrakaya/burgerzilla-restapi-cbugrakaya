@@ -33,7 +33,6 @@ class CustRegisterSchema(Schema):
         required=True, 
         validate=[
             Length(min=2, max=128)
-            # Regexp(r"^[a-zA-ZğüşöçİĞÜŞÖÇ]+$",error="Invalid  name!")
         ]
     )
     password = fields.Str(required=True, validate=[Length(min=5, max=128)])
@@ -60,7 +59,6 @@ class ResRegisterSchema(Schema):
         required=True,
         validate=[
             Length(min=2, max=128)
-            # Regexp(r"^[a-zA-ZğüşöçİĞÜŞÖÇ]+$",error="Invalid  name!")
         ]
     )
     password = fields.Str(required=True, validate=[Length(min=5, max=128)])

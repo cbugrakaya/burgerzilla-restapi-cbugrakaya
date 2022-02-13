@@ -2,14 +2,6 @@ from enum import Enum
 from app import db 
 from werkzeug.security import check_password_hash,generate_password_hash
 
-
-
-
-# class Roles(Enum):
-#     customer = 1
-#     restaurant = 2
-    
-    
 class Users(db.Model):
     """
     User table"""

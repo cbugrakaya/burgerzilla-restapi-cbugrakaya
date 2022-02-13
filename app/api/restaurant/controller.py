@@ -89,7 +89,8 @@ class ResMenu(Resource):
         """Get menu """
         current_user = get_jwt()
         return RestaurantService.get_menu(current_user['res_id'])
-
+    
+    # FIXME : This is not necessary or confusig
     # @api.doc("update menu", responses={
     # 200: ("Success"),
     # 400: "Bad Request",
@@ -133,10 +134,7 @@ class ResMenuProductLıst(Resource):
         current_user = get_jwt()
         return RestaurantService.get_all_products(current_user['res_id'])
 
-# pembe 
-# (get) Ürün detayı
-# (put) Ürünü güncelle
-# (delete) Ürünü sil
+
 @api.route('/menu/<int:product_id>')
 class ResMenuItem(Resource):
     @api.doc("get specific product details", responses={

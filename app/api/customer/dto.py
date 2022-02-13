@@ -26,8 +26,6 @@ class CustomerDto:
     })
 
     order_new_data = api.model('Order New Data', {
-        # 'product_ids': fields.List(fields.Integer, required=True, description="Product IDs"),
-        # 'quantities': fields.List(fields.Integer, required=True, description="Quantities")
         'product_ids': fields.Integer(required=True, description="Product IDs"),
         'quantities': fields.Integer(required=True, description="Quantities")
     })

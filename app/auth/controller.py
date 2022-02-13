@@ -9,7 +9,7 @@ from .utils import LoginSchema, CustRegisterSchema, ResRegisterSchema
 api = AuthDto.api
 auth_success = AuthDto.auth_success
 
-# Customer and Restaurant ogin schema is the same
+# Customer and Restaurant Login schema is the same
 login_schema = LoginSchema()
 
 # Customer register schema 

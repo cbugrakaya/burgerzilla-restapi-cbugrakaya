@@ -37,7 +37,7 @@ class RestaurantService:
         if not (order := OrdersTable.query.filter_by(order_id=order_id,res_id=res_id).first()):
             return err_resp(msg="Not Found Order", code=404, reason="order_not_found")
         try:
-            # if status between 1 and 5
+
             if not(update_data['status'] in range(1,6)):
                 return err_resp(msg="Invalid status for order(1,5)", code=402, reason="invalid_status")
             if order.order_status == OrderStatus.RESTAURANT_CANCELLED.name or order.order_status == OrderStatus.CUSTOMER_CANCELLED.name:
@@ -104,7 +104,7 @@ class RestaurantService:
             current_app.logger.error(e)
             return internal_err_resp()
 
-    # FIX : This is not necessary or confusig
+    # FIXME : This is not necessary or confusig
     # @staticmethod
     # def update_menu(res_id,product_id, update_data):
     #     """
